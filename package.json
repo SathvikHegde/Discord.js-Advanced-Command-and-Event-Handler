@@ -1,0 +1,27 @@
+{
+  "name": "lonelyrpg",
+  "version": "1.0.0",
+  "description": "Come here after 2-3 months :)",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SathvikHegde/LonelyRPG.git"
+  },
+  "author": "SathvikHegde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SathvikHegde/LonelyRPG/issues"
+  },
+  "homepage": "https://github.com/SathvikHegde/LonelyRPG#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  },
+  "dependencies": {
+    "discord.js": "^13.0.1",
+    "dotenv": "^10.0.0",
+    "mongoose": "^5.13.5"
+  }
+}
