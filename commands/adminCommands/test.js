@@ -1,4 +1,8 @@
-// eslint-disable-next-line no-unused-vars
-exports.run = (client, message, args) => {
-  message.channel.send("pong!").catch(console.error);
+module.exports = {
+  name: "ping",
+  alias: ["pong"],
+  description: "this is a ping command!",
+  execute(message, args, cmd, client, Discord) {
+    message.channel.send(`My Latency: ${Date.now() - message.createdTimestamp}ms.\nDiscord API Latency: ${client.ws.ping}ms.`);
+  }
 };

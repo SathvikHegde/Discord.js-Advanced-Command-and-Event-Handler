@@ -1,37 +1,21 @@
-const { Client, Intents } = require("discord.js");
+const Discord = require("discord.js");
 const fs = require("fs");
-require("dotenv");
+require("dotenv").config();
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const mongoose = require("mongoose");
 
-fs.readdir("./events/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    const event = require(`./events/${file}`);
-    const eventName = file.split(".")[0];
-    client.on(eventName, event.bind(null, client));
-  });
+const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
+
+client.commands = new Discord.Collection();
+client.events = new Discord.Collection();
+
+/*mongoose.connect(process.env.MONGODBURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});*/
+
+["commandHandler", "eventHandler"].forEach(handler =>{
+  require(`./handlers/${handler}`)(client, Discord);
 });
-
-client.commands = new Client.Collection();
-
-loadCommands(client.commands, "./commands");
-console.log("Loaded Commands");
-
-function loadCommands(collection, directory) {
-  const files = fs.readdirSync(directory);
-
-  for (const file of files) {
-    const path=`${directory}/${file}`;
-
-    if(file.endsWith(".js")) {
-      const command = require(path);
-      collection.set(command.name, command);
-    }
-    else if(fs.lstatSync(path).isDirectory()) {
-      loadCommands(collection, path);
-    }
-  }
-}
 
 client.login(process.env.TOKEN);
