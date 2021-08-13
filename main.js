@@ -9,10 +9,10 @@ const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Disc
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
-/*mongoose.connect(process.env.MONGODBURI, {
+mongoose.connect(process.env.MONGODBURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});*/
+});
 
 ["commandHandler", "eventHandler"].forEach(handler =>{
   require(`./handlers/${handler}`)(client, Discord);
