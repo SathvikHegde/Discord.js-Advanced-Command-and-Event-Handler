@@ -1,3 +1,1 @@
-# LonelyRPG
-
-Come here after 2-3 months :)
+# Discord.js Advanced Event and Command Handler
